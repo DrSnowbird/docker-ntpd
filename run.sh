@@ -133,8 +133,8 @@ echo "---- Starting a Container for ${imageTag}"
 echo "---------------------------------------------"
 echo ${DISPLAY}
 ## debug
-# docker run -it --rm \
-docker run -d \
+# docker run -d \
+docker run -it --rm \
     --name=${instanceName} \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

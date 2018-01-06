@@ -10,7 +10,7 @@ DOCKER_IMAGE_REPO=`echo $(basename $PWD)|tr '[:upper:]' '[:lower:]'|tr "/: " "_"
 imageTag=${1:-"${ORGANIZATION}/${DOCKER_IMAGE_REPO}"}
 instanceName=`echo $(basename ${imageTag})|tr '[:upper:]' '[:lower:]'|tr "/: " "_"`
 
-ntpdate -q ${MY_IP}
+sudo ntpdate -q ${MY_IP}
 
 # Here is a sample output from my environment:
 
@@ -24,5 +24,5 @@ ntpdate -q ${MY_IP}
 #11 Dec 09:47:53 ntpdate[26030]: no server suitable for synchronization found
 #To see details on the ntpd status, you can check with the below command on your docker host:
 
-docker exec ${instanceName} ntpctl -s status
+#docker exec ${instanceName} ntpctl -s status
 #4/4 peers valid, clock synced, stratum 2

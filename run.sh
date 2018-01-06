@@ -118,6 +118,7 @@ function generatePortMapping() {
 generatePortMapping
 echo ${PORT_MAP}
 
+
 ###################################################
 #### ---- Mostly, you don't need change below ----
 ###################################################
@@ -131,15 +132,18 @@ instanceName=`echo $(basename ${imageTag})|tr '[:upper:]' '[:lower:]'|tr "/: " "
 echo "---------------------------------------------"
 echo "---- Starting a Container for ${imageTag}"
 echo "---------------------------------------------"
-echo ${DISPLAY}
+
 ## debug
 # docker run -d \
-docker run -it --rm \
+#    --detach=true          \
+docker run -d \
     --name=${instanceName} \
-    -e DISPLAY=$DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    --restart=always       \
+    --cap-add=SYS_RESOURCE \
+    --cap-add=SYS_TIME     \
     ${VOLUME_MAP} \
     ${PORT_MAP} \
     ${imageTag}
+
 
 
